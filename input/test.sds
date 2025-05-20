@@ -1,0 +1,8 @@
+- Yo!
+- This is a basic test of my dialogue system.
+! What do you think about it?
+    > I guess it's alright
+        - Some more enthusiasm please!
+    > It's great
+        - Thats nice to hear!
+- That was it already
