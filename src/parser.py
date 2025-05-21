@@ -6,39 +6,45 @@ OUTPUT_PATH = Path("./output/")
 
 
 def read_lines(content, read_idx):
-    json = {}
+    json = {"lines": []}
     last_exclamation = None
     choice = 0
-    line_counter = 0
 
     while read_idx < len(content):
         line = content[read_idx].strip()
+
         if line.startswith("-"):
             # standard output
-            json["line_" + str(line_counter)] = {"type": 0, "text": line[2:]}
+            json["lines"].append({"type": 0, "text": line[2:]})
             read_idx += 1
-            line_counter += 1
+
         elif line.startswith("!"):
             # branch
             choice = 0
-            last_exclamation = line_counter
-            json["line_" + str(line_counter)] = {
-                "type": 1,
-                "text": line[2:],
-                "answers": [],
-                "branches": {},
-            }
+            last_exclamation = len(json["lines"])
+            json["lines"].append(
+                {
+                    "type": 1,
+                    "text": line[2:],
+                    "answers": [],
+                    "branches": [],
+                }
+            )
             read_idx += 1
-            line_counter += 1
+
         elif line.startswith(">"):
             # decision
-            json["line_" + str(last_exclamation)]["answers"].append(line[2:-2])
+            json["lines"][last_exclamation]["answers"].append(line[2:-2])
+
             branch_json, new_read_idx = read_lines(content, read_idx + 1)
-            json["line_" + str(last_exclamation)]["branches"][str(choice)] = branch_json
+            json["lines"][last_exclamation]["branches"].append(branch_json["lines"])
+
             choice += 1
             read_idx = new_read_idx
+
         else:
-            return json, read_idx + 1
+            read_idx += 1
+            return json, read_idx
     return json, read_idx
 
 

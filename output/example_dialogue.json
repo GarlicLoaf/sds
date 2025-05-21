@@ -1,62 +1,64 @@
 {
-    "line_0": {
-        "type": 0,
-        "text": "This is a demonstration of my SDS"
-    },
-    "line_1": {
-        "type": 1,
-        "text": "I sure hope you know what SDS stands for?",
-        "answers": [
-            "Sure!",
-            "No, I don't know to be honest."
-        ],
-        "branches": {
-            "0": {
-                "line_0": {
-                    "type": 0,
-                    "text": "That's cool!"
-                },
-                "line_1": {
-                    "type": 1,
-                    "text": "Well, then go ahaid, tell me!",
-                    "answers": [
-                        "Ehhhhh, Super Duper Smalltalk (System)?",
-                        "Simple Dialogue System!"
-                    ],
-                    "branches": {
-                        "0": {
-                            "line_0": {
-                                "type": 0,
-                                "text": "No! It's the short form for Simple Dialogue System"
-                            }
-                        },
-                        "1": {
-                            "line_0": {
-                                "type": 0,
-                                "text": "Yessir, that's correct!"
-                            },
-                            "line_1": {
-                                "type": 0,
-                                "text": "It doesn't really have any special meaning, but does sound nice in my opinion!"
-                            }
-                        }
+    "lines": [
+        {
+            "type": 0,
+            "text": "This is a demonstration of my SDS"
+        },
+        {
+            "type": 1,
+            "text": "I sure hope you know what SDS stands for?",
+            "answers": [
+                "Sure!",
+                "No, I don't know to be honest."
+            ],
+            "branches": [
+                [
+                    {
+                        "type": 0,
+                        "text": "That's cool!"
+                    },
+                    {
+                        "type": 1,
+                        "text": "Well, then go ahaid, tell me!",
+                        "answers": [
+                            "Ehhhhh, Super Duper Smalltalk (System)?",
+                            "Simple Dialogue System!"
+                        ],
+                        "branches": [
+                            [
+                                {
+                                    "type": 0,
+                                    "text": "No! It's the short form for Simple Dialogue System"
+                                }
+                            ],
+                            [
+                                {
+                                    "type": 0,
+                                    "text": "Yessir, that's correct!"
+                                },
+                                {
+                                    "type": 0,
+                                    "text": "It doesn't really have any special meaning, but does sound nice in my opinion!"
+                                }
+                            ]
+                        ]
                     }
-                }
-            },
-            "1": {
-                "line_0": {
-                    "type": 0,
-                    "text": "No problem! It's the short form for Simple Dialogue System"
-                }
-            }
+                ],
+                [
+                    {
+                        "type": 0,
+                        "text": "No problem! It's the short form for Simple Dialogue System"
+                    }
+                ]
+            ]
+        },
+        {
+            "type": 0,
+            "text": "It's a system I worked on for my second raylib project."
+        },
+        {
+            "type": 0,
+            "text": "Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself."
         }
-    },
-    "line_2": {
-        "type": 0,
-        "text": "It's a system I worked on for my second raylib project."
-    },
-    "line_3": {
-        "type": 0,
-        "text": "Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself."
-    }
+    ]
 }
