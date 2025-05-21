@@ -32,7 +32,7 @@ def read_lines(content, read_idx):
             line_counter += 1
         elif line.startswith(">"):
             # decision
-            json["line_" + str(last_exclamation)]["answers"].append(line[2:])
+            json["line_" + str(last_exclamation)]["answers"].append(line[2:-2])
             branch_json, new_read_idx = read_lines(content, read_idx + 1)
             json["line_" + str(last_exclamation)]["branches"][str(choice)] = branch_json
             choice += 1
@@ -48,7 +48,6 @@ def main():
         with open(file_path, "r") as file:
             contents = file.readlines()
         json_dict, _ = read_lines(contents, 0)
-        print(json_dict)
 
         output_file = OUTPUT_PATH / (file_path.stem + ".json")
 
