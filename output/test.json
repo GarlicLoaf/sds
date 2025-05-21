@@ -1,0 +1,36 @@
+{
+    "line_0": {
+        "type": 0,
+        "text": "Yo!"
+    },
+    "line_1": {
+        "type": 0,
+        "text": "This is a basic test of my dialogue system."
+    },
+    "line_2": {
+        "type": 1,
+        "text": "What do you think about it?",
+        "answers": [
+            "I guess it's alright",
+            "It's great"
+        ],
+        "branches": {
+            "0": {
+                "line_0": {
+                    "type": 0,
+                    "text": "Some more enthusiasm please!"
+                }
+            },
+            "1": {
+                "line_0": {
+                    "type": 0,
+                    "text": "Thats nice to hear!"
+                }
+            }
+        }
+    },
+    "line_3": {
+        "type": 0,
+        "text": "That was it already"
+    }
+}
