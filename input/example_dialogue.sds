@@ -1,4 +1,6 @@
 - This is a demonstration of my SDS
+- It's a system I worked on for my second raylib project.
+- Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself.
 ! I sure hope you know what SDS stands for?
     > Sure! [
         - That's cool!
@@ -12,7 +14,6 @@
             ]
     ]
     > No, I don't know to be honest. [
-    - No problem! It's the short form for Simple Dialogue System
+        - No problem! It's the short form for Simple Dialogue System
     ]
-- It's a system I worked on for my second raylib project.
-- Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself.
+- Thanks for listening!

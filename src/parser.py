@@ -5,47 +5,45 @@ INPUT_PATH = Path("./input/")
 OUTPUT_PATH = Path("./output/")
 
 
-def read_lines(content, read_idx):
-    json = {"lines": []}
-    last_exclamation = None
-    choice = 0
+def read_lines(content):
+    json = {"lines": {}, "metadata": {}}
 
-    while read_idx < len(content):
-        line = content[read_idx].strip()
+    line_idx = 0
+    current_indent = 0
+    current_branch_idx = None
+    branch_stack = []
 
-        if line.startswith("-"):
-            # standard output
-            json["lines"].append({"type": 0, "text": line[2:]})
-            read_idx += 1
+    while line_idx < len(content):
+        print(current_indent)
+        line = content[line_idx]
 
-        elif line.startswith("!"):
-            # branch
-            choice = 0
-            last_exclamation = len(json["lines"])
-            json["lines"].append(
-                {
-                    "type": 1,
-                    "text": line[2:],
-                    "answers": [],
-                    "branches": [],
-                }
-            )
-            read_idx += 1
+        if line[current_indent] == ("-"):
+            json["lines"][str(line_idx)] = {
+                "text": line[current_indent + 2 :],
+                # Assume no branch for now
+                "next": ((line_idx + 1)),
+            }
+            pass
+        elif line[current_indent] == ("!"):
+            # Branch
+            # First detect where this branch ends, if it ends
+            temp_line_idx = line_idx
+            while temp_line_idx < len(content):
+                if content[temp_line_idx][current_indent] == "-":
+                    current_branch_idx = temp_line_idx
 
-        elif line.startswith(">"):
-            # decision
-            json["lines"][last_exclamation]["answers"].append(line[2:-2])
+                    # Update the previous lines next jump point
+                    json["lines"][str(line_idx - 1)]["next"] = current_branch_idx
+                    break
+                temp_line_idx += 1
 
-            branch_json, new_read_idx = read_lines(content, read_idx + 1)
-            json["lines"][last_exclamation]["branches"].append(branch_json["lines"])
-
-            choice += 1
-            read_idx = new_read_idx
-
+            current_indent += 4
+        elif line[current_indent] == (">"):
+            current_indent += 4
         else:
-            read_idx += 1
-            return json, read_idx
-    return json, read_idx
+            current_indent -= 4
+        line_idx += 1
+    return json
 
 
 def main():
@@ -53,7 +51,7 @@ def main():
         json_dict = None
         with open(file_path, "r") as file:
             contents = file.readlines()
-        json_dict, _ = read_lines(contents, 0)
+        json_dict = read_lines(contents)
 
         output_file = OUTPUT_PATH / (file_path.stem + ".json")
 
