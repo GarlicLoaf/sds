@@ -10,11 +10,27 @@
         },
         "2": {
             "text": "Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself.\n",
-            "next": 18
+            "next": 3
+        },
+        "5": {
+            "text": "That's cool!\n",
+            "next": 6
+        },
+        "8": {
+            "text": "No! It's the short form for Simple Dialogue System\n",
+            "next": 12
+        },
+        "11": {
+            "text": "Yessir, that's correct!\n",
+            "next": 12
+        },
+        "12": {
+            "text": "It doesn't really have any special meaning, but does sound nice in my opinion!\n",
+            "next": 4
         },
         "16": {
             "text": "No problem! It's the short form for Simple Dialogue System\n",
-            "next": 17
+            "next": 4
         }
     },
     "metadata": {}

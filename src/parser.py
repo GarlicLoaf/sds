@@ -12,36 +12,30 @@ def read_lines(content):
     current_indent = 0
     current_branch_idx = None
     branch_stack = []
+    last_line_idx = None
 
     while line_idx < len(content):
         print(current_indent)
+        print(content[line_idx])
         line = content[line_idx]
+        stripped_line = line.lstrip()
 
-        if line[current_indent] == ("-"):
+        if stripped_line.startswith("]"):
+            current_indent = len(line) - len(stripped_line)
+            json["lines"][str(last_line_idx)]["next"] = current_indent
+        elif line[current_indent] == ("-"):
             json["lines"][str(line_idx)] = {
                 "text": line[current_indent + 2 :],
-                # Assume no branch for now
                 "next": ((line_idx + 1)),
             }
-            pass
+            last_line_idx = line_idx
         elif line[current_indent] == ("!"):
             # Branch
-            # First detect where this branch ends, if it ends
-            temp_line_idx = line_idx
-            while temp_line_idx < len(content):
-                if content[temp_line_idx][current_indent] == "-":
-                    current_branch_idx = temp_line_idx
-
-                    # Update the previous lines next jump point
-                    json["lines"][str(line_idx - 1)]["next"] = current_branch_idx
-                    break
-                temp_line_idx += 1
-
             current_indent += 4
+            last_line_idx = line_idx
         elif line[current_indent] == (">"):
             current_indent += 4
-        else:
-            current_indent -= 4
+            last_line_idx = line_idx
         line_idx += 1
     return json
 
