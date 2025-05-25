@@ -7,25 +7,24 @@ definitions [
 - This is a demonstration of my SDS
 - It's a system I worked on for my second raylib project.
 - Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself.
-! I sure hope you know what SDS stands for?
-    > Sure! [
+! I sure hope you know what SDS stands for? [
+    > Sure!
         - That's cool!
-        ! Well, then go ahead, tell me!
-            > Ehhhhh, Super Duper Smalltalk (System)? [
+        ! Well, then go ahead, tell me! [
+            > Ehhhhh, Super Duper Smalltalk (System)?
                 - No! It's the short form for Simple Dialogue System
                 => END
-            ]
-            > Simple Dialogue System! [
+            > Simple Dialogue System!
                 - Yessir, that's correct!
                 - It doesn't really have any special meaning, but does sound nice in my opinion!
                 => END
             ]
-    ]
-    > No, I don't know to be honest. [
+    > No, I don't know to be honest.
         - No problem! It's the short form for Simple Dialogue System
         => END
-    ]
+]
 
 
 # END
 - Thanks for listening!
+FIN

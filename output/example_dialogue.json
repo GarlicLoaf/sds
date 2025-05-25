@@ -1,36 +1,70 @@
 {
     "lines": {
         "0": {
-            "text": "This is a demonstration of my SDS\n",
+            "text": "This is a demonstration of my SDS",
             "next": 1
         },
         "1": {
-            "text": "It's a system I worked on for my second raylib project.\n",
+            "text": "It's a system I worked on for my second raylib project.",
             "next": 2
         },
         "2": {
-            "text": "Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself.\n",
+            "text": "Back then, I wasn't able to find a good implementation of a json-based dialogue system, so I decided to just do it myself.",
             "next": 3
         },
+        "3": {
+            "text": "I sure hope you know what SDS stands for?",
+            "options": [
+                4,
+                15
+            ]
+        },
+        "4": {
+            "text": "Sure!",
+            "next": 5
+        },
         "5": {
-            "text": "That's cool!\n",
+            "text": "That's cool!",
             "next": 6
         },
+        "6": {
+            "text": "Well, then go ahead, tell me!",
+            "options": [
+                7,
+                10
+            ]
+        },
+        "7": {
+            "text": "Ehhhhh, Super Duper Smalltalk (System)?",
+            "next": 8
+        },
         "8": {
-            "text": "No! It's the short form for Simple Dialogue System\n",
-            "next": 12
+            "text": "No! It's the short form for Simple Dialogue System",
+            "next": 22
+        },
+        "10": {
+            "text": "Simple Dialogue System!",
+            "next": 11
         },
         "11": {
-            "text": "Yessir, that's correct!\n",
+            "text": "Yessir, that's correct!",
             "next": 12
         },
         "12": {
-            "text": "It doesn't really have any special meaning, but does sound nice in my opinion!\n",
-            "next": 4
+            "text": "It doesn't really have any special meaning, but does sound nice in my opinion!",
+            "next": 22
+        },
+        "15": {
+            "text": "No, I don't know to be honest.",
+            "next": 16
         },
         "16": {
-            "text": "No problem! It's the short form for Simple Dialogue System\n",
-            "next": 4
+            "text": "No problem! It's the short form for Simple Dialogue System",
+            "next": 22
+        },
+        "22": {
+            "text": "Thanks for listening!",
+            "next": -1
         }
     },
     "metadata": {}
