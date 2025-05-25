@@ -84,7 +84,6 @@ def parse_dialogue(content, vars, modules):
             current_line += 1
 
         last_branch = last_branch[:branch_depth]
-        print(current_line - 1, content[current_line - 1])
 
     json["lines"][str(current_line - 1)]["next"] = -1
     return json
