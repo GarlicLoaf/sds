@@ -1,56 +1,61 @@
 import json
+import re
 from pathlib import Path
 
 INPUT_PATH = Path("./input/")
 OUTPUT_PATH = Path("./output/")
 
 
-def read_lines(content):
-    json = {"lines": {}, "metadata": {}}
-
+def parse_variables(content):
+    pattern = re.compile(r"\$(\w+)\s*=\s*(.+)")
+    var_dict = {}
     line_idx = 0
-    current_indent = 0
-    current_branch_idx = None
-    branch_stack = []
-    last_line_idx = None
 
-    while line_idx < len(content):
-        print(current_indent)
-        print(content[line_idx])
-        line = content[line_idx]
-        stripped_line = line.lstrip()
+    while not content[line_idx].startswith("]"):
+        line = content[line_idx].strip()
 
-        if stripped_line.startswith("]"):
-            current_indent = len(line) - len(stripped_line)
-            json["lines"][str(last_line_idx)]["next"] = current_indent
-        elif line[current_indent] == ("-"):
-            json["lines"][str(line_idx)] = {
-                "text": line[current_indent + 2 :],
-                "next": ((line_idx + 1)),
-            }
-            last_line_idx = line_idx
-        elif line[current_indent] == ("!"):
-            # Branch
-            current_indent += 4
-            last_line_idx = line_idx
-        elif line[current_indent] == (">"):
-            current_indent += 4
-            last_line_idx = line_idx
+        match = pattern.match(line)
+        if match:
+            key = match.group(1)
+            val = match.group(2)
+
+            if val.startswith('"') and val.endswith('"'):
+                var_dict[key] = val
+            else:
+                var_dict[key] = int(val)
         line_idx += 1
-    return json
+
+    return content[line_idx + 1 :], var_dict
+
+
+def parse_modules(content):
+    modules = {}
+    for i, line in enumerate(content):
+        line = line.strip()
+
+        if line.startswith("#"):
+            modules[line[2:]] = i + 1
+
+    return modules
 
 
 def main():
     for file_path in INPUT_PATH.glob("*.sds"):
-        json_dict = None
         with open(file_path, "r") as file:
-            contents = file.readlines()
-        json_dict = read_lines(contents)
+            content = file.readlines()
 
-        output_file = OUTPUT_PATH / (file_path.stem + ".json")
+        variable_dict, file_dialogue = None, None
+        if content[0].startswith("def"):
+            file_dialogue, variable_dict = parse_variables(content[1:])
 
-        with open(output_file, "w", encoding="utf-8") as out_file:
-            json.dump(json_dict, out_file, indent=4, ensure_ascii=False)
+        modules = parse_modules(file_dialogue)
+
+        print(variable_dict)
+        print(modules)
+        # output_file = OUTPUT_PATH / (file_path.stem + ".json")
+
+        # with open(output_file, "w", encoding="utf-8") as out_file:
+        #     json.dump(json_dict, out_file, indent=4, ensure_ascii=False)
 
 
 if __name__ == "__main__":
